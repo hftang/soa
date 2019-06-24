@@ -1,4 +1,4 @@
-package com.igeek.ebuy.mapper;
+package com.igeek.ebuy.manager.mapper;
 
 import com.igeek.ebuy.pojo.TbContent;
 import com.igeek.ebuy.pojo.TbContentExample;

@@ -18,6 +18,12 @@
             <artifactId>buy-manager-pojo</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.igeek</groupId>
+            <artifactId>buy-manager-dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 </project>
