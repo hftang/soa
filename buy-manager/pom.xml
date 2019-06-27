@@ -16,7 +16,7 @@
         <module>buy-manager-dao</module>
         <module>buy-manager-interface</module>
         <module>buy-manager-service</module>
-        <module>buy-manager-web</module>
+
 
     </modules>
     <dependencies>
@@ -34,7 +34,7 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
-                    <port>8080</port>
+                    <port>5080</port>
                     <path>/</path>
                 </configuration>
             </plugin>
