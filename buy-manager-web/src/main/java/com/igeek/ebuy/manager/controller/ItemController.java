@@ -2,6 +2,7 @@ package com.igeek.ebuy.manager.controller;
 
 import com.igeek.ebuy.pojo.TbItem;
 import com.igeek.ebuy.service.ItemService;
+import com.igeek.ebuy.util.pojo.BuyResult;
 import com.igeek.ebuy.util.pojo.EasyUIDatagridResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,5 +33,14 @@ public class ItemController {
     public EasyUIDatagridResult itemList(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "30") int rows) {
         EasyUIDatagridResult easyUIDatagridResult = itemService.queryByPage(page, rows);
         return easyUIDatagridResult;
+    }
+
+    //保存
+    @RequestMapping("/item/save")
+    @ResponseBody
+    public BuyResult saveItem(TbItem tbItem, String desc) {
+        itemService.saveItem(tbItem, desc);
+
+        return BuyResult.ok(200);
     }
 }

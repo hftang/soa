@@ -32,6 +32,8 @@
     <dubbo:protocol name="dubbo" port="2019"/>
     <!-- 申明需要暴露的服务的接口 -->
     <dubbo:service interface="com.igeek.ebuy.service.ItemService" ref="itemServiceImpl"/>
+    <!--发布itemcat分类服务-->
+    <dubbo:service interface="com.igeek.ebuy.service.ItemCatService" ref="itemCatServiceImpl"/>
 
 
 </beans>

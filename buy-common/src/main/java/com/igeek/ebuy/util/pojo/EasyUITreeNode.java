@@ -1,11 +1,13 @@
 package com.igeek.ebuy.util.pojo;
 
+import java.io.Serializable;
+
 /**
  * @author hftang
  * @date 2019-06-27 10:13
  * @desc easyuitree 节点
  */
-public class EasyUITreeNode {
+public class EasyUITreeNode implements Serializable {
 
     private long id;
 

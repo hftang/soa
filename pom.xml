@@ -95,10 +95,9 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
                 <version>${slf4j.version}</version>
-            </dependency>    <!-- Mybatis -->
+            </dependency>
+            <!-- Mybatis -->
             <dependency>
-
-
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
                 <version>${mybatis.version}</version>
@@ -117,17 +116,20 @@
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper</artifactId>
                 <version>${pagehelper.version}</version>
-            </dependency>    <!-- MySql -->
+            </dependency>
+            <!-- MySql -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
-            </dependency>    <!-- 连接池 -->
+            </dependency>
+            <!-- 连接池 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
-            </dependency>    <!-- Spring -->
+            </dependency>
+            <!-- Spring -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
@@ -164,7 +166,8 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context-support</artifactId>
                 <version>${spring.version}</version>
-            </dependency>    <!-- JSP相关 -->
+            </dependency>
+            <!-- JSP相关 -->
             <dependency>
                 <groupId>jstl</groupId>
                 <artifactId>jstl</artifactId>
@@ -181,24 +184,26 @@
                 <artifactId>jsp-api</artifactId>
                 <version>${jsp-api.version}</version>
                 <scope>provided</scope>
-            </dependency>    <!-- 文件上传组件 -->
+            </dependency>
+            <!-- 文件上传组件 -->
             <dependency>
                 <groupId>commons-fileupload</groupId>
-
-
                 <artifactId>commons-fileupload</artifactId>
                 <version>${commons-fileupload.version}</version>
-            </dependency>    <!-- Redis客户端 -->
+            </dependency>
+            <!-- Redis客户端 -->
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
                 <version>${jedis.version}</version>
-            </dependency>    <!-- solr客户端 -->
+            </dependency>
+            <!-- solr客户端 -->
             <dependency>
                 <groupId>org.apache.solr</groupId>
                 <artifactId>solr-solrj</artifactId>
                 <version>${solrj.version}</version>
-            </dependency>    <!-- dubbo相关 -->
+            </dependency>
+            <!-- dubbo相关 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>dubbo</artifactId>

@@ -1,6 +1,7 @@
 package com.igeek.ebuy.service;
 
 import com.igeek.ebuy.pojo.TbItem;
+import com.igeek.ebuy.util.pojo.BuyResult;
 import com.igeek.ebuy.util.pojo.EasyUIDatagridResult;
 
 /**
@@ -26,4 +27,12 @@ public interface ItemService {
      * @return
      */
     public EasyUIDatagridResult queryByPage(int page, int rows);
+
+    /***
+     * 保存条目
+     * @param tbItem
+     * @param desc
+     * @return
+     */
+    public BuyResult saveItem(TbItem tbItem, String desc);
 }

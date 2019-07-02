@@ -11,10 +11,14 @@
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
+    <!--加载配置文件然后使用${} value来取值-->
+    <context:property-placeholder location="classpath:conf/resource.properties"/>
+
+
     <context:component-scan base-package="com.igeek.ebuy.manager.controller"/>
 
-    <mvc:annotation-driven></mvc:annotation-driven>
 
+    <mvc:annotation-driven></mvc:annotation-driven>
 
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,9 +27,23 @@
     </bean>
 
 
+    <!--配置fastdfsclient-->
+    <bean class="com.igeek.ebuy.util.FastDFSClient">
+        <constructor-arg index="0" value="classpath:conf/client.conf"></constructor-arg>
+    </bean>
+
+    <!--配置上传图片-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--设置编码-->
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <!--设置文件上传的最大值-->
+        <property name="maxUploadSize" value="5242880"></property>
+    </bean>
+
+
     <!-- 配置资源映射 -->
-    <mvc:resources location="/css/" mapping="/css/**" />
-    <mvc:resources location="/js/" mapping="/js/**" />
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
 
     <!--引用服务端发布的服务-->
     <!-- 引用dubbo服务 -->
@@ -37,4 +55,6 @@
     <dubbo:protocol name="dubbo" port="20881"/>
     <!--引用指定的服务  id 在本应用中的id-->
     <dubbo:reference interface="com.igeek.ebuy.service.ItemService" id="itemService"/>
+    <!--引用 itemcat 分类服务-->
+    <dubbo:reference interface="com.igeek.ebuy.service.ItemCatService" id="itemCatService"/>
 </beans>
