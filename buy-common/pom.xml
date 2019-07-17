@@ -65,6 +65,15 @@
             <artifactId>fastdfs-client-java</artifactId>
             <version>1.27-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
 
     </dependencies>
 </project>

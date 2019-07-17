@@ -1,6 +1,5 @@
 package com.igeek.ebuy.manager.controller;
 
-import com.igeek.ebuy.pojo.TbItem;
 import com.igeek.ebuy.service.ItemCatService;
 import com.igeek.ebuy.util.pojo.EasyUITreeNode;
 import org.springframework.beans.factory.annotation.Autowired;

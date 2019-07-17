@@ -51,10 +51,14 @@
     <dubbo:application name="ebuy-manager-web"/>
     <!-- 配置注册中心的相关信息 -->
     <dubbo:registry protocol="zookeeper" address="192.168.217.132:2181"/>
-    <!-- 配置dubbo服务和端口号 -->
-    <dubbo:protocol name="dubbo" port="20881"/>
+
     <!--引用指定的服务  id 在本应用中的id-->
     <dubbo:reference interface="com.igeek.ebuy.service.ItemService" id="itemService"/>
     <!--引用 itemcat 分类服务-->
     <dubbo:reference interface="com.igeek.ebuy.service.ItemCatService" id="itemCatService"/>
+    <!--引用 category 分类服务-->
+    <dubbo:reference interface="com.igeek.ebuy.content.service.ContentCategoryService" id="contetnCategoryServiceid"/>
+    <!--保存content-->
+    <dubbo:reference interface="com.igeek.ebuy.content.service.ContentService" id="contentService"></dubbo:reference>
+
 </beans>

@@ -1,6 +1,5 @@
 package com.igeek.ebuy.manager.controller;
 
-import com.github.pagehelper.PageInfo;
 import com.igeek.ebuy.util.FastDFSClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +27,7 @@ public class PictuerController {
     @RequestMapping("/pic/upload")
     @ResponseBody
     public Map uploadFile(MultipartFile uploadFile) {
+
         Map map = new HashMap<>();
         String originalFilename = uploadFile.getOriginalFilename();
         String extName = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
@@ -42,7 +41,6 @@ public class PictuerController {
             map.put("error", 1);
             map.put("message", "出错了");
         }
-
 
         return map;
     }

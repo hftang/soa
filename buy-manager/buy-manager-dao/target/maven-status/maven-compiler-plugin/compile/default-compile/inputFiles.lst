@@ -11,6 +11,7 @@ D:\javaweb\ebuy-parent\buy-manager\buy-manager-dao\src\main\java\com\igeek\ebuy\
 D:\javaweb\ebuy-parent\buy-manager\buy-manager-dao\src\main\java\com\igeek\ebuy\pojo\TbItemDescExample.java
 D:\javaweb\ebuy-parent\buy-manager\buy-manager-dao\src\main\java\com\igeek\ebuy\pojo\TbOrder.java
 D:\javaweb\ebuy-parent\buy-manager\buy-manager-dao\src\main\java\com\igeek\ebuy\pojo\TbItemParamItemExample.java
+D:\javaweb\ebuy-parent\buy-manager\buy-manager-dao\src\main\java\com\igeek\ebuy\manager\mapper\ContentCategoryExMapper.java
 D:\javaweb\ebuy-parent\buy-manager\buy-manager-dao\src\main\java\com\igeek\ebuy\manager\mapper\TbItemParamMapper.java
 D:\javaweb\ebuy-parent\buy-manager\buy-manager-dao\src\main\java\com\igeek\ebuy\pojo\TbItem.java
 D:\javaweb\ebuy-parent\buy-manager\buy-manager-dao\src\main\java\com\igeek\ebuy\manager\mapper\TbItemCatMapper.java
@@ -24,6 +25,7 @@ D:\javaweb\ebuy-parent\buy-manager\buy-manager-dao\src\main\java\com\igeek\ebuy\
 D:\javaweb\ebuy-parent\buy-manager\buy-manager-dao\src\main\java\com\igeek\ebuy\pojo\TbItemDesc.java
 D:\javaweb\ebuy-parent\buy-manager\buy-manager-dao\src\main\java\com\igeek\ebuy\pojo\TbItemExample.java
 D:\javaweb\ebuy-parent\buy-manager\buy-manager-dao\src\main\java\com\igeek\ebuy\manager\mapper\TbOrderMapper.java
+D:\javaweb\ebuy-parent\buy-manager\buy-manager-dao\src\main\java\com\igeek\ebuy\manager\mapper\ContentExMapper.java
 D:\javaweb\ebuy-parent\buy-manager\buy-manager-dao\src\main\java\com\igeek\ebuy\manager\mapper\TbContentCategoryMapper.java
 D:\javaweb\ebuy-parent\buy-manager\buy-manager-dao\src\main\java\com\igeek\ebuy\pojo\TbItemParam.java
 D:\javaweb\ebuy-parent\buy-manager\buy-manager-dao\src\main\java\com\igeek\ebuy\pojo\TbContentExample.java

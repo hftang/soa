@@ -17,9 +17,7 @@ public class FastDFSClient {
 
     public FastDFSClient(String confPath) {
         this.confPath = confPath;
-
         //分2种情况，第一种是相对路径 第二种是绝对路径
-
         if (confPath.indexOf("classpath") != -1) {
 
             String path = confPath.substring(confPath.indexOf("classpath") + 10);

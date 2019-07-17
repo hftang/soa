@@ -59,6 +59,7 @@ $(function(){
 });
 
 var contentEditPage = {
+
 		submitForm : function(){
 			if(!$('#contentEditForm').form('validate')){
 				$.messager.alert('提示','表单还未填写完成!');

@@ -4,7 +4,7 @@
          id="WebApp_ID" version="2.5">
 
 
-    <display-name>ebuy-manager-web</display-name>
+    <display-name>ebuy-manager</display-name>
 
     <!-- 加载spring容器 -->
     <context-param>
