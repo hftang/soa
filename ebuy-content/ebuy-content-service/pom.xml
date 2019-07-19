@@ -14,10 +14,7 @@
     <packaging>war</packaging>
 
     <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
+
 
         <!-- 依赖interface -->
         <dependency>

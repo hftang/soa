@@ -60,5 +60,7 @@
     <dubbo:reference interface="com.igeek.ebuy.content.service.ContentCategoryService" id="contetnCategoryServiceid"/>
     <!--保存content-->
     <dubbo:reference interface="com.igeek.ebuy.content.service.ContentService" id="contentService"></dubbo:reference>
+    <!--solr 保存缓存的服务-->
+    <dubbo:reference interface="com.igeek.ebuy.search.service.SearchService" id="searchService"/>
 
 </beans>

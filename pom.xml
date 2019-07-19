@@ -12,6 +12,8 @@
         <module>buy-manager</module>
         <module>ebuy-portal-web</module>
         <module>ebuy-content</module>
+        <module>ebuy-search</module>
+        <module>ebuy-search-web</module>
     </modules>
     <packaging>pom</packaging>
 

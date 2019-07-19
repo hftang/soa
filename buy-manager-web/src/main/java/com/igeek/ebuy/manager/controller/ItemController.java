@@ -1,6 +1,7 @@
 package com.igeek.ebuy.manager.controller;
 
 import com.igeek.ebuy.pojo.TbItem;
+import com.igeek.ebuy.search.service.SearchService;
 import com.igeek.ebuy.service.ItemService;
 import com.igeek.ebuy.util.pojo.BuyResult;
 import com.igeek.ebuy.util.pojo.EasyUIDatagridResult;
@@ -18,6 +19,24 @@ import org.springframework.web.bind.annotation.*;
 public class ItemController {
     @Autowired
     private ItemService itemService;
+
+    @Autowired
+    private SearchService searchService;
+
+    // /index/item/import
+
+    /***
+     * 导入索引库
+     * @return
+     */
+
+    @RequestMapping("/index/item/import")
+    @ResponseBody
+    public BuyResult importIndex() {
+        BuyResult buyResult = searchService.importIndex();
+
+        return buyResult;
+    }
 
     @RequestMapping("/item/{itemId}")
     @ResponseBody

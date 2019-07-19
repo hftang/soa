@@ -38,11 +38,20 @@ public class ContentServiceImpl implements ContentService {
 
     @Override
     public BuyResult saveContent(TbContent tbContent) {
+
         //补全信息
         tbContent.setCreated(new Date());
         tbContent.setUpdated(new Date());
 
         tbContentMapper.insert(tbContent);
+
+        //同步缓存操作下面
+
+        String key = "CONTENT:" + tbContent.getCategoryId();
+        //删除操作
+        jedisClient.del(key);
+
+
 
         return BuyResult.ok(200);
     }
@@ -77,13 +86,10 @@ public class ContentServiceImpl implements ContentService {
 
     @Override
     public List<TbContent> queryByCategoryId(long categoryId) {
-
         //设计id
         String key = "CONTENT:" + categoryId;
-
         //获取值
         String json = jedisClient.get(key);
-
         if (StringUtils.isNoneBlank(json)) {
             //有数据，直接放回
             //将json转换为集合返回。
@@ -92,8 +98,6 @@ public class ContentServiceImpl implements ContentService {
             Logger.getGlobal().info("从redis中获取：" + tbContents);
             return tbContents;
         }
-
-
         TbContentExample example = new TbContentExample();
         TbContentExample.Criteria criteria = example.createCriteria();
         criteria.andCategoryIdEqualTo(categoryId);
@@ -102,9 +106,7 @@ public class ContentServiceImpl implements ContentService {
         System.out.println("从数据库中获取：" + list);
         Logger.getGlobal().info("从数据库中获取：" + list);
         //保存一份到redis中
-
         jedisClient.set(key, JsonUtils.objectToJson(list));
-
         return list;
     }
 }

@@ -1,4 +1,3 @@
-import org.junit.Test;
 import redis.clients.jedis.Jedis;
 
 /**
@@ -8,7 +7,7 @@ import redis.clients.jedis.Jedis;
  */
 public class JedisTest {
 
-    @Test
+//    @Test
     public void run01() {
 
         Jedis jedis = new Jedis("192.168.217.132", 6379);
