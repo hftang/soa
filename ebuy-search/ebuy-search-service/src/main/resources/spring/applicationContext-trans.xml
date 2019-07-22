@@ -31,7 +31,5 @@
     <aop:config>
         <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.igeek.ebuy.search.service..*.*(..))"/>
     </aop:config>
-    <!--<jdbc:embedded-database id="dataSource">-->
-       <!---->
-    <!--</jdbc:embedded-database>-->
+
 </beans>
