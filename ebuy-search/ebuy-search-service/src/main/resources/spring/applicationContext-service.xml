@@ -31,8 +31,8 @@
     <!-- 配置dubbo服务以及端口号 -->
     <dubbo:protocol name="dubbo" port="20193"/>
     <!-- 申明需要暴露的服务的接口 -->
-   <dubbo:service interface="com.igeek.ebuy.search.service.SearchService" ref="searchServiceImpl"/>
-
+    <dubbo:service timeout="4000"
+                   interface="com.igeek.ebuy.search.service.SearchService" ref="searchServiceImpl"/>
 
 
 </beans>

@@ -42,6 +42,6 @@
     <dubbo:protocol name="dubbo" port="20881"/>
 
     <!--引用-->
-    <!--<dubbo:reference interface="com.igeek.ebuy.content.service.ContentService" id="contentService"/>-->
+    <dubbo:reference interface="com.igeek.ebuy.search.service.SearchService" id="searchService"/>
 
 </beans>

@@ -2,8 +2,11 @@ package com.igeek.ebuy.search.service.impl;
 
 import com.igeek.ebuy.search.mapper.SearchItemMapper;
 import com.igeek.ebuy.search.service.SearchService;
+import com.igeek.ebuy.search.service.dao.SearchDao;
 import com.igeek.ebuy.util.pojo.BuyResult;
 import com.igeek.ebuy.util.pojo.SearchItem;
+import com.igeek.ebuy.util.pojo.SearchResult;
+import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,8 @@ public class SearchServiceImpl implements SearchService {
 
     @Autowired
     private SolrServer solrServer;
+    @Autowired
+    private SearchDao searchDao;
 
     @Override
     public BuyResult importIndex() {
@@ -62,5 +67,35 @@ public class SearchServiceImpl implements SearchService {
 
         return new BuyResult(400);
 
+    }
+
+    /****
+     * 查询商品
+     * @param page
+     * @param rows
+     * @param keyword
+     * @return
+     */
+
+    @Override
+    public SearchResult searchItem(int page, int rows, String keyword) {
+
+        //使用solr查询商品
+
+        SolrQuery solrQuery = new SolrQuery();
+
+        //开启高亮
+        solrQuery.setHighlight(true);
+        solrQuery.set("df", "item_title");
+        solrQuery.setHighlightSimplePre("<span style='color:red'>");
+        solrQuery.setHighlightSimplePost("</span>");
+
+        //开启查询条件
+        solrQuery.setQuery("item_title:"+keyword);
+
+
+        SearchResult searchResult = searchDao.queryItem(solrQuery);
+
+        return searchResult;
     }
 }

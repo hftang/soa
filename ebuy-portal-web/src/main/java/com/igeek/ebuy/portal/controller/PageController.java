@@ -34,5 +34,13 @@ public class PageController {
         return "index";
     }
 
+    @RequestMapping("/error")
+    public String CreateError() {
+        int s = 1 / 0;
+
+        return "";
+
+    }
+
 
 }

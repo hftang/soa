@@ -26,6 +26,9 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!--全局异常处理类-->
+    <bean class="com.igeek.ebuy.portal.GlobalExceptionReslver"/>
+
 
     <!-- 配置资源映射 -->
     <mvc:resources location="/css/" mapping="/css/**"/>
