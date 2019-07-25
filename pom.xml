@@ -14,6 +14,7 @@
         <module>ebuy-content</module>
         <module>ebuy-search</module>
         <module>ebuy-search-web</module>
+        <module>ebuy-item-web</module>
     </modules>
     <packaging>pom</packaging>
 

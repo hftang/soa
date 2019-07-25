@@ -19,8 +19,8 @@
 		</div>
 		</div>
     <div class="index_promo"></div>
-    <div class="search">
-      <form action="http://localhost:5085/search.html" id="searchForm" name="query" method="GET">
+    <div class="search"> <%-- http://localhost:5085/search.html--%>
+      <form action="http://search.ebuy.com/search.html" id="searchForm" name="query" method="GET">
         <input type="text" class="text keyword ac_input" name="keyword" id="keyword" value="" style="color: rgb(153, 153, 153);" onkeydown="javascript:if(event.keyCode==13) search_keys('searchForm');" autocomplete="off">
         <input type="button" value="" class="submit" onclick="search_keys('searchForm')">
       </form>

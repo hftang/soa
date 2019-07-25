@@ -8,9 +8,11 @@ import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
+import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +26,33 @@ import java.util.Map;
 public class SearchDao {
     @Autowired
     private SolrServer solrServer;
+
+    //保存对象到索引库
+
+    public void saveItem(SearchItem item) {
+        SolrInputDocument doc = new SolrInputDocument();
+
+        doc.addField("id", item.getId());
+        doc.addField("item_title", item.getTitle());
+        doc.addField("item_sell_point", item.getSell_point());
+        doc.addField("item_price", item.getPrice());
+        doc.addField("item_category_name", item.getCategory_name());
+        //图片
+        String image = item.getItem_image();
+        String[] images = image.split(",");
+        if (images != null && images.length > 0) {
+            image = images[0];
+        }
+        doc.addField("item_image", image);
+        try {
+            solrServer.add(doc);
+            solrServer.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public SearchResult queryItem(SolrQuery query) {
         SearchResult searchResult = new SearchResult();
         try {
@@ -43,10 +72,10 @@ public class SearchDao {
                 searchItem.setSell_point(item.get("item_sell_point").toString());
                 searchItem.setTitle(item.get("item_title").toString());
                 //判断高亮显示是否有结果
-                if(highlighting!=null){
+                if (highlighting != null) {
                     Map<String, List<String>> map = highlighting.get(searchItem.getId());
                     List<String> item_title = map.get("item_title");
-                    if(item_title!=null&&item_title.size()>0){
+                    if (item_title != null && item_title.size() > 0) {
                         searchItem.setTitle(item_title.get(0));
                     }
                 }

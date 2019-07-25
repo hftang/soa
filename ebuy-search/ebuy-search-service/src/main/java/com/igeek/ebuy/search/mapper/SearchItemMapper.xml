@@ -15,4 +15,19 @@
              cat.status=1
   </select>
 
+    <select id="getItemById" resultType="com.igeek.ebuy.util.pojo.SearchItem" parameterType="long">
+
+         select
+              item.id,item.title,item.sell_point,item.price,item.image item_image,cat.name category_name
+            from
+              tb_item item
+            left join
+             tb_item_cat cat
+            on
+             item.cid = cat.id
+            where
+             cat.status=1 and item.id = #{itemId}
+
+    </select>
+
 </mapper>
