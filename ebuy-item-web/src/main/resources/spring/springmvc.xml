@@ -41,8 +41,8 @@
     <!-- 配置dubbo服务和端口号 -->
     <dubbo:protocol name="dubbo" port="20881"/>
 
-    <!--引用
-        <dubbo:reference interface="com.igeek.ebuy.content.service.ContentService" id="contentService"/>
-    -->
+    <!--引用-->
+    <dubbo:reference interface="com.igeek.ebuy.service.ItemService" id="itemService"/>
+
 
 </beans>

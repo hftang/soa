@@ -119,4 +119,18 @@ public class ItemServiceImpl implements ItemService {
         });
         return BuyResult.ok(200);
     }
+
+    /***
+     * 根据商品id 查询商品的详情
+     * @param itemId
+     * @return
+     */
+
+    @Override
+    public TbItemDesc queryItemDescById(long itemId) {
+
+        TbItemDesc tbItemDesc = tbItemDescMapper.selectByPrimaryKey(itemId);
+
+        return tbItemDesc;
+    }
 }

@@ -1,6 +1,7 @@
 package com.igeek.ebuy.service;
 
 import com.igeek.ebuy.pojo.TbItem;
+import com.igeek.ebuy.pojo.TbItemDesc;
 import com.igeek.ebuy.util.pojo.BuyResult;
 import com.igeek.ebuy.util.pojo.EasyUIDatagridResult;
 
@@ -35,4 +36,11 @@ public interface ItemService {
      * @return
      */
     public BuyResult saveItem(TbItem tbItem, String desc);
+
+    /***
+     * 根据商品id 查询商品的详情
+     * @param itemId
+     * @return
+     */
+    public TbItemDesc queryItemDescById(long itemId);
 }
