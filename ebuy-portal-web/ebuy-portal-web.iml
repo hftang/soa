@@ -25,7 +25,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="buy-manager-interface" />
+    <orderEntry type="module" module-name="ebuy-content-interface" />
     <orderEntry type="module" module-name="buy-manager-pojo" />
     <orderEntry type="module" module-name="buy-manager-dao" />
     <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.2.8" level="project" />
@@ -67,6 +67,8 @@
     <orderEntry type="library" name="Maven: org.quartz-scheduler:quartz:2.2.2" level="project" />
     <orderEntry type="library" name="Maven: c3p0:c3p0:0.9.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-log4j12:1.6.4" level="project" />
+    <orderEntry type="library" name="Maven: redis.clients:jedis:2.7.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-pool2:2.3" level="project" />
     <orderEntry type="library" name="Maven: org.csource:fastdfs-client-java:1.27-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: jstl:jstl:1.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
@@ -94,11 +96,5 @@
     <orderEntry type="library" name="Maven: jline:jline:0.9.94" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty:3.7.0.Final" level="project" />
     <orderEntry type="library" name="Maven: com.github.sgroschupf:zkclient:0.1" level="project" />
-    <orderEntry type="library" name="Maven: redis.clients:jedis:2.7.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-pool2:2.3" level="project" />
-    <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.23" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.activemq:activemq-all:5.11.2" level="project" />
-    <orderEntry type="library" name="Maven: junit:junit:4.12" level="project" />
-    <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
   </component>
 </module>

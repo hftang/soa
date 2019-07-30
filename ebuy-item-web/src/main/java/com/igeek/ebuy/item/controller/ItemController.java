@@ -3,6 +3,7 @@ package com.igeek.ebuy.item.controller;
 import com.igeek.ebuy.pojo.TbItem;
 import com.igeek.ebuy.pojo.TbItemDesc;
 import com.igeek.ebuy.service.ItemService;
+import com.igeek.ebuy.util.jedis.JedisClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,8 +31,6 @@ public class ItemController {
         TbItemDesc tbItemDesc = itemService.queryItemDescById(itemId);
 
         model.addAttribute("itemDesc", tbItemDesc);
-
-
         return "item";
     }
 }

@@ -8,9 +8,12 @@ import com.igeek.ebuy.pojo.TbItem;
 import com.igeek.ebuy.pojo.TbItemDesc;
 import com.igeek.ebuy.pojo.TbItemExample;
 import com.igeek.ebuy.service.ItemService;
+import com.igeek.ebuy.util.jedis.JedisClient;
+import com.igeek.ebuy.util.json.JsonUtils;
 import com.igeek.ebuy.util.pojo.BuyResult;
 import com.igeek.ebuy.util.pojo.EasyUIDatagridResult;
 import org.apache.activemq.command.ActiveMQTopic;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jms.core.JmsTemplate;
@@ -45,12 +48,20 @@ public class ItemServiceImpl implements ItemService {
     @Qualifier("itemAdd-Destination")
     private Destination activeMQTopicqueue;
 
+    @Autowired
+    private JedisClient jedisClient;
+
     @Override
     public TbItem queryById(long itemId) {
+        //查询缓存
+        String infoKey = "ITEM_INFO:" + itemId + ":BASE";
+        String baseInfo = jedisClient.get(infoKey);
+        //刷新存活时间
+        jedisClient.expire(infoKey, 60 * 60 * 24);
 
-//        TbItem tbItem = tbItemMapper.selectByPrimaryKey(itemId);
-
-        //第二种 使用 example
+        if (StringUtils.isNotBlank(baseInfo)) {
+            return JsonUtils.jsonToPojo(baseInfo, TbItem.class);
+        }
 
         TbItemExample tbItemExample = new TbItemExample();
         TbItemExample.Criteria criteria = tbItemExample.createCriteria();
@@ -60,6 +71,10 @@ public class ItemServiceImpl implements ItemService {
         List<TbItem> tbItems = tbItemMapper.selectByExample(tbItemExample);
 
         if (tbItems != null && tbItems.size() > 0) {
+            //将数据存到缓存中
+            jedisClient.set(infoKey, JsonUtils.objectToJson(tbItems.get(0)));
+            //设置存活时间
+            jedisClient.expire(infoKey, 60 * 60 * 24);
             return tbItems.get(0);
         }
         return null;
@@ -126,11 +141,26 @@ public class ItemServiceImpl implements ItemService {
      * @return
      */
 
+
     @Override
     public TbItemDesc queryItemDescById(long itemId) {
-
+        String descKey = "ITEM_INFO:" + itemId + ":DESC";
+        String descInfo = jedisClient.get(descKey);
+        //刷新存活时间
+        jedisClient.expire(descKey, 60 * 60 * 24);
+        //先查
+        if (StringUtils.isNotBlank(descInfo)) {
+            System.out.println("商品详情从redis中获取");
+            return JsonUtils.jsonToPojo(descInfo, TbItemDesc.class);
+        }
         TbItemDesc tbItemDesc = tbItemDescMapper.selectByPrimaryKey(itemId);
-
+        if (tbItemDesc != null) {
+            //再 存
+            jedisClient.set(descKey, JsonUtils.objectToJson(tbItemDesc));
+            //设置存活时间
+            jedisClient.expire(descKey, 60 * 60 * 24);
+        }
+        System.out.println("商品详情从mysql中获取");
         return tbItemDesc;
     }
 }

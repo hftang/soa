@@ -35,6 +35,7 @@
     <!--注入监听器-->
     <bean id="itemAddListener" class="com.igeek.ebuy.search.service.impl.ItemAddListener"/>
 
+    <!--activemq提供的容器 来整合 连接工厂 消息队列  监听器-->
     <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
         <property name="connectionFactory" ref="connectionFactory"/>
         <property name="destination" ref="itemAdd-Destination"/>

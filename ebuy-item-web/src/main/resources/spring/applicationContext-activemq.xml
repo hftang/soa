@@ -19,34 +19,27 @@
        http://www.springframework.org/schema/util
        http://www.springframework.org/schema/util/spring-util-4.2.xsd">
 
-    <!--原始连接工厂-->
     <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQXAConnectionFactory">
         <constructor-arg name="brokerURL" value="tcp://192.168.217.132:61616"/>
     </bean>
-    <!--    activemq 提供的 包装了一下的 工厂-->
-    <bean class="org.springframework.jms.connection.SingleConnectionFactory" id="singleConnectionFactory">
+
+    <bean class="org.springframework.jms.connection.SingleConnectionFactory" id="connectionFactory">
         <property name="targetConnectionFactory" ref="targetConnectionFactory"></property>
     </bean>
-    <!--发送消息 mq 的消息发送模板-->
-    <bean class="org.springframework.jms.core.JmsTemplate" id="jmsTemplate">
-        <property name="connectionFactory" ref="singleConnectionFactory"></property>
-    </bean>
 
-    <!--下面是消息队列的类型-->
-
-    <bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
-        <constructor-arg>
-            <value>spring-queue</value>
-        </constructor-arg>
-    </bean>
-
-    <bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
-        <constructor-arg value="spring-topic"></constructor-arg>
-    </bean>
-
-    <!--添加商品 的消息队列类型 发送端和接受端一定要一致  不然 接受不到消息-->
+    <!--添加商品-->
     <bean id="itemAdd-Destination" class="org.apache.activemq.command.ActiveMQTopic">
         <constructor-arg value="itemAdd-topic"></constructor-arg>
+    </bean>
+
+    <!--注入监听器-->
+    <bean id="itemAddListener" class="com.igeek.ebuy.item.service.impl.ItemAddListener"/>
+
+    <!--activemq提供的容器 来整合 连接工厂 消息队列  监听器-->
+    <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="destination" ref="itemAdd-Destination"/>
+        <property name="messageListener" ref="itemAddListener"/>
     </bean>
 
 
