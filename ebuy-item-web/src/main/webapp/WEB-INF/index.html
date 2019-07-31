@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            position: relative;
+            left: 0px;
+            top: 0px;
+        }
+
+        .top {
+            height: 120px;
+            background-color: green;
+        }
+
+        .top h2 {
+            font-style: italic;
+            color: white;
+            text-align: center;
+            line-height: 80px;
+        }
+
+        .content {
+            background-color: goldenrod;
+            height: 100%;
+            margin-top: 120px;
+            margin-bottom: 100px;
+        }
+
+        .content .content_top {
+            height: 200px;
+            background-color: #fff;
+        }
+
+        .content .content_bottom {
+            height: 200px;
+            background-color: teal;
+        }
+
+        .content .content_bottom img {
+            margin: 0 auto;
+            display: block;
+        }
+
+        .foot {
+            position: fixed;
+            left: 0px;
+            bottom: 0px;
+            width: 100%;
+            height: 100px;
+            background-color: red;
+        }
+        .foot .zhujie{
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+        }
+
+        .clearfix::before,
+        .clearfix::after{
+            content: "";
+            display: block;
+            height: 0;
+            line-height: 0px;
+            clear: both;
+            visibility: hidden;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="top">
+    <h2>树莓派实验室</h2>
+</div>
+<div class="content">
+    <div class="content_top">
+        放点啥？
+    </div>
+    <div class="content_bottom">
+        <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=540309321,3538184523&fm=26&gp=0.jpg" align="center" height="200px">
+    </div>
+</div>
+<div class="foot">
+    <div class="zhujie">
+        <span>@hftang made</span>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,33 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>ebuy-content</artifactId>
+        <artifactId>ebuy-parent</artifactId>
         <groupId>com.igeek</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ebuy-content-service</artifactId>
+    <artifactId>ebuy-sso-web</artifactId>
     <packaging>war</packaging>
+
+    <name>ebuy-sso-web Maven Webapp</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.com</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
 
     <dependencies>
 
+        <dependency>
+            <groupId>com.igeek</groupId>
+            <artifactId>ebuy-sso-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
-        <!-- 依赖interface -->
         <dependency>
             <groupId>com.igeek</groupId>
-            <artifactId>ebuy-content-interface</artifactId>
+            <artifactId>buy-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <!-- 依赖dao -->
+
+
+        <!-- JSP相关 -->
         <dependency>
-            <groupId>com.igeek</groupId>
-            <artifactId>buy-manager-dao</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -62,7 +87,7 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
-            <!-- 排除spring2.5 -->
+            <!--排除spring2.5 因为dubbo 依赖2.5 但是此项目用的是spring4.0 避免冲突-->
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework</groupId>
@@ -74,22 +99,28 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
             <artifactId>zookeeper</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.github.sgroschupf</groupId>
             <artifactId>zkclient</artifactId>
         </dependency>
 
-        <!-- Redis客户端 -->
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-        </dependency>
-
     </dependencies>
+
+    <!-- 配置tomcat插件 -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <configuration>
+                    <port>5088</port>
+                    <path>/</path>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
