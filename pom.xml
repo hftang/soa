@@ -17,6 +17,8 @@
         <module>ebuy-item-web</module>
         <module>ebuy-sso</module>
         <module>ebuy-sso-web</module>
+        <module>ebuy-cart</module>
+        <module>ebuy-cart-web</module>
     </modules>
     <packaging>pom</packaging>
 

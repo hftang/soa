@@ -12,7 +12,6 @@ import com.igeek.ebuy.util.jedis.JedisClient;
 import com.igeek.ebuy.util.json.JsonUtils;
 import com.igeek.ebuy.util.pojo.BuyResult;
 import com.igeek.ebuy.util.pojo.EasyUIDatagridResult;
-import org.apache.activemq.command.ActiveMQTopic;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

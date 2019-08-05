@@ -22,9 +22,20 @@ public class BuyResult implements Serializable {
         this.status = status;
     }
 
+    public BuyResult(int status, String msg) {
+        this.data = data;
+        this.msg = msg;
+    }
+
     public static BuyResult ok(int status) {
 
         return new BuyResult(status);
+    }
+
+    public static BuyResult build(int status, String msg) {
+
+        return new BuyResult(status, msg);
+
     }
 
 
