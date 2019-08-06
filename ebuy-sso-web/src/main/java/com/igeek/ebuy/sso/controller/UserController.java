@@ -6,6 +6,7 @@ import com.igeek.ebuy.util.cookie.CookieUtils;
 import com.igeek.ebuy.util.pojo.BuyResult;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 public class UserController {
+    @Value("${TOKEN_COOKIE_NAME}")
+    private String TOKEN_COOKIE_NAME;
 
     @Autowired
     UserService userService;
@@ -54,7 +57,7 @@ public class UserController {
 //            cookie.setPath("/");
 //            response.addCookie(cookie);
 
-            CookieUtils.setCookie(request,response,"EBUY-TOKEN",token);
+            CookieUtils.setCookie(request, response, TOKEN_COOKIE_NAME, token);
         }
 
         return result;

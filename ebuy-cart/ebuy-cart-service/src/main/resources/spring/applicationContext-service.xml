@@ -28,9 +28,8 @@ http://code.alibabatech.com/schema/dubbo/dubbo.xsd
     <!-- 申明需要暴露的服务的接口 -->
     <!-- interface:提供的服务的接口
         ref:实际提供服务的实现类的对象在spring中的名称
-
-    <dubbo:service interface="com.igeek.ebuy.content.service.ContentCategoryService" ref="contentCategoryServiceImpl"/>
-  -->
+    -->
+    <dubbo:service interface="com.igeek.ebuy.cart.service.impl.CartService" ref="cartServiceImpl"/>
 
 
 </beans>

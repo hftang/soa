@@ -28,6 +28,19 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.igeek</groupId>
+            <artifactId>buy-manager-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.igeek</groupId>
+            <artifactId>ebuy-sso-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+
 
         <!-- JSP相关 -->
         <dependency>
@@ -99,10 +112,6 @@
             <groupId>com.github.sgroschupf</groupId>
             <artifactId>zkclient</artifactId>
         </dependency>
-
-
-
-
 
 
 
