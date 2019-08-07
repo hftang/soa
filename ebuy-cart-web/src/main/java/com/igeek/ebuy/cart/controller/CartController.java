@@ -86,18 +86,40 @@ public class CartController {
         return new BuyResult(200);
     }
 
+    //获取购物车列表
     @RequestMapping("/cart/cart")
-    public String cartList(HttpServletRequest request) {
+    public String cartList(HttpServletRequest request, HttpServletResponse response) {
         List<TbItem> cart = getCart(request);
-        request.setAttribute("cartList", cart);
-        return "cart";
+        //先判断是否已登录，如果登录合并购物车，从服务器获取列表
+        Object loginUser = request.getAttribute("loginUser");
+
+        if (loginUser != null) {
+            TbUser user = (TbUser) loginUser;
+            //判断cookie中是否有记录
+            if (cart != null && cart.size() > 0) {
+
+                cartService.mergeCart(user.getId(), cart);
+                //再次查询
+                //清除cookie中的列表 避免数量错乱
+                CookieUtils.deleteCookie(request, response, CART_NAME);
+            }
+            List<TbItem> cartList = cartService.getCartList(user.getId());
+            request.setAttribute("cartList", cartList);
+            return "cart";
+
+        } else {
+            //未登录
+            List<TbItem> cartList = getCart(request);
+            request.setAttribute("cartList", cartList);
+            return "cart";
+        }
+
+
     }
 
     @RequestMapping("/cart/add/{itemId}")
     public String cartAdd(@PathVariable long itemId, int num, HttpServletRequest request, HttpServletResponse response) {
-
         //判断用户是否登录
-
         Object loginUser = request.getAttribute("loginUser");
         if (loginUser != null) {
             TbUser user = (TbUser) loginUser;
@@ -112,14 +134,17 @@ public class CartController {
         //商品是否已存在
         boolean isExists = false;
         //先从购物车中查询有没有这个产品
-        List<TbItem> carts = getCart(request);
-        //检查添加的商品是否已存在
-        for (TbItem item : carts) {
-            if (item.getId() == itemId) {
-                //已存在
-                item.setNum(item.getNum() + num);
-                isExists = true;
-                break;
+        List<TbItem> carts  = getCart(request);
+
+        if (carts != null) {
+            //检查添加的商品是否已存在
+            for (TbItem item : carts) {
+                if (item.getId() == itemId) {
+                    //已存在
+                    item.setNum(item.getNum() + num);
+                    isExists = true;
+                    break;
+                }
             }
         }
         //不存在添加到购物车中
@@ -132,7 +157,9 @@ public class CartController {
                 image = image.split(",")[0];
                 item.setImage(image);
             }
-            carts.add(item);
+            if(carts!=null){
+                carts.add(item);
+            }
         }
         //写入cookie 设置存活时间 不编码
         CookieUtils.setCookie(request, response, CART_NAME, JsonUtils.objectToJson(carts), 60 * 60 * 24 * 7, false);
@@ -141,6 +168,7 @@ public class CartController {
         return "cartSuccess";
     }
 
+    //从cookie获取购物车
     private List<TbItem> getCart(HttpServletRequest request) {
         List<TbItem> list = new ArrayList<>();
         String cartJson = CookieUtils.getCookieValue(request, CART_NAME, false);

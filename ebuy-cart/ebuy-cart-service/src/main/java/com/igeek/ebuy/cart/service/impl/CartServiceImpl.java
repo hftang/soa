@@ -11,6 +11,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author hftang
  * @date 2019-08-06 15:08
@@ -34,21 +37,17 @@ public class CartServiceImpl implements CartService {
             item.setNum(item.getNum() + num);
             //再次放到redis
             jedisClient.hset(userId + "", itemId + "", JsonUtils.objectToJson(item));
-
         } else {
             //redis不存在
-
             TbItem item = itemMapper.selectByPrimaryKey(itemId);
             if (item != null) {
                 item.setNum(num);
-
+                if (StringUtils.isNotBlank(item.getImage())) {
+                    item.setImage(item.getImage().split(",")[0]);
+                }
                 jedisClient.hset(userId + "", itemId + "", JsonUtils.objectToJson(item));
             }
-
-
         }
-
-
         return new BuyResult(200);
     }
 
@@ -70,5 +69,27 @@ public class CartServiceImpl implements CartService {
     public BuyResult deleteCart(long userId, long itemId) {
         jedisClient.hdel(userId + "", itemId + "");
         return new BuyResult(200);
+    }
+
+    //合并购物车列表
+    @Override
+    public BuyResult mergeCart(long usrId, List<TbItem> cartList) {
+        for (TbItem item : cartList) {
+            addCart(usrId, item.getId(), item.getNum());
+        }
+
+        return new BuyResult(200);
+    }
+
+    //获取服务端购物车的列表
+    @Override
+    public List<TbItem> getCartList(long userId) {
+        List<TbItem> itemList = new ArrayList<>();
+        List<String> hvals = jedisClient.hvals(userId + "");
+        for (String item : hvals) {
+            TbItem item1 = JsonUtils.jsonToPojo(item, TbItem.class);
+            itemList.add(item1);
+        }
+        return itemList;
     }
 }

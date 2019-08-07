@@ -1,6 +1,9 @@
 package com.igeek.ebuy.cart.service.impl;
 
+import com.igeek.ebuy.pojo.TbItem;
 import com.igeek.ebuy.util.pojo.BuyResult;
+
+import java.util.List;
 
 /**
  * @author hftang
@@ -38,4 +41,21 @@ public interface CartService {
      * @return
      */
     public BuyResult deleteCart(long userId, long itemId);
+
+    /***
+     *合并购物车
+     * @param usrId 用户id
+     * @param cartList cookie中的购物车列表
+     * @return
+     */
+
+    public BuyResult mergeCart(long usrId, List<TbItem> cartList);
+
+    /**
+     * 获取购物车列表
+     *
+     * @param userId
+     * @return
+     */
+    public List<TbItem> getCartList(long userId);
 }
